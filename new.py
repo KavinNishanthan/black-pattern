@@ -59,14 +59,18 @@ def scrape_and_follow_links(url, depth=1):
                     l.append(predicted_label)
                     l.append("The page is Deceptive")
                     l.append("Type of deception :")
+                    l.append("Description ")
                     for i in range(len(class_labels)):
                         if class_labels[i]== predicted_label:
                             l.append(class_descriptions[i])
                             break
-                    l.append("Flaged Deceptive text used in U/I  : " +h1_tag.text.strip())
+                    l.append("Flaged field" )
+                    l.append(h1_tag.text.strip())
                     return l
      l=[]
      l.append("No deception found")
+     l.append(" ")
+     l.append(" ")
      l.append(" ")
      l.append(" ")
      l.append(" ")
