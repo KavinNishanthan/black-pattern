@@ -16,7 +16,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-saved_model_path = '../model'  
+saved_model_path = 'model'  
 model = BertForSequenceClassification.from_pretrained(saved_model_path)
 tokenizer = BertTokenizer.from_pretrained(saved_model_path)
 class_descriptions = [
@@ -55,14 +55,11 @@ def scrape_and_follow_links(url, depth=1):
                 label_encoder.fit(class_labels)
                 predicted_label = label_encoder.inverse_transform([predicted_class_index])[0]
                 if predicted_label != 'Not Dark Pattern':
-                    data["div Tags"].append(h1_tag.text.strip())
-                    with open('output.json', 'w', encoding='utf-8') as json_file:
-                     json.dump(data, json_file, ensure_ascii=False, indent=4)
-                     l=[]
-                     l.append(predicted_label)
-                     l.append("The page is Deceptive")
-                     l.append("Type of deception :")
-                     for i in range(len(class_labels)):
+                    l=[]
+                    l.append(predicted_label)
+                    l.append("The page is Deceptive")
+                    l.append("Type of deception :")
+                    for i in range(len(class_labels)):
                         if class_labels[i]== predicted_label:
                             l.append(class_descriptions[i])
                             break
