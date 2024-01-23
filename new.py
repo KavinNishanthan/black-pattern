@@ -16,7 +16,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-saved_model_path = 'model'  
+saved_model_path = '../model'  
 model = BertForSequenceClassification.from_pretrained(saved_model_path)
 tokenizer = BertTokenizer.from_pretrained(saved_model_path)
 class_descriptions = [
